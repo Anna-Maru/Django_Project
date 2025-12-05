@@ -20,4 +20,4 @@ def contacts(request):
         print(f'Сообщение: {message}')
         print('=' * 50)
         return HttpResponse(f"Спасибо, {name}! Сообщение получено.")
-    return render(request, 'contacts.html')
+    return render(request, 'catalog/contacts.html')
