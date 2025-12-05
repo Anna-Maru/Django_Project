@@ -5,7 +5,7 @@ from django.contrib import messages
 
 def home(request):
     """Главная страница"""
-    return render(request, 'home.html')
+    return render(request, 'catalog/home.html')
 
 
 def contacts(request):
