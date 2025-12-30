@@ -1,0 +1,74 @@
+[
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "▌ыхъЄЁюэшър",
+    "description": "▌ыхъЄЁюээ√х єёЄЁющёЄтр ш ръёхёёєрЁ√"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "╬фхцфр",
+    "description": "╠юфэр  юфхцфр фы  ьєцўшэ ш цхэ∙шэ"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 3,
+  "fields": {
+    "name": "╩эшуш",
+    "description": "╒єфюцхёЄтхээр  ш Єхїэшўхёър  ышЄхЁрЄєЁр"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "name": "╤яюЁЄ",
+    "description": "╥ютрЁ√ фы  ёяюЁЄр ш ръЄштэюую юЄф√їр"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 5,
+  "fields": {
+    "name": "▌ыхъЄЁюэшър",
+    "description": "▌ыхъЄЁюээ√х єёЄЁющёЄтр ш ръёхёёєрЁ√"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 6,
+  "fields": {
+    "name": "╬фхцфр",
+    "description": "╠юфэр  юфхцфр фы  ьєцўшэ ш цхэ∙шэ"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 7,
+  "fields": {
+    "name": "╩эшуш",
+    "description": "╒єфюцхёЄтхээр  ш Єхїэшўхёър  ышЄхЁрЄєЁр"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 8,
+  "fields": {
+    "name": "╤яюЁЄ",
+    "description": "╥ютрЁ√ фы  ёяюЁЄр ш ръЄштэюую юЄф√їр"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 9,
+  "fields": {
+    "name": "▌ыхъЄЁюэшър",
+    "description": "▌ыхъЄЁюээ√х єёЄЁющёЄтр ш ръёхёёєрЁ√"
+  }
+}
+]
