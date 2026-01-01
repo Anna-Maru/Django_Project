@@ -75,3 +75,43 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.price} руб.)"
+
+
+class Contact(models.Model):
+    """Модель контактной информации."""
+
+    country = models.CharField(
+        max_length=100,
+        verbose_name='Страна',
+        help_text='Введите страну'
+    )
+    inn = models.CharField(
+        max_length=20,
+        verbose_name='ИНН',
+        help_text='Введите ИНН компании'
+    )
+    address = models.CharField(
+        max_length=300,
+        verbose_name='Адрес',
+        help_text='Введите адрес'
+    )
+    email = models.EmailField(
+        verbose_name='Email',
+        help_text='Введите email для связи',
+        blank=True,
+        null=True
+    )
+    phone = models.CharField(
+        max_length=50,
+        verbose_name='Телефон',
+        help_text='Введите контактный телефон',
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self):
+        return f"{self.country} - {self.address}"
