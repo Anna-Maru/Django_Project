@@ -1,0 +1,80 @@
+[
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "name": "═юєЄсєъ ASUS",
+    "description": "╠ю∙э√щ эюєЄсєъ фы  ЁрсюЄ√ ш шуЁ",
+    "image": "",
+    "category": 5,
+    "price": "75000.00",
+    "created_at": "2025-12-22T12:43:22.818Z",
+    "updated_at": "2025-12-22T12:43:22.818Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "name": "╤ьрЁЄЇюэ Samsung",
+    "description": "╤ютЁхьхээ√щ ёьрЁЄЇюэ ё юЄышўэющ ърьхЁющ",
+    "image": "",
+    "category": 5,
+    "price": "45000.00",
+    "created_at": "2025-12-22T12:43:29.922Z",
+    "updated_at": "2025-12-22T12:43:29.922Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 3,
+  "fields": {
+    "name": "╘єЄсюыър Nike",
+    "description": "╤яюЁЄштэр  ЇєЄсюыър шч ърўхёЄтхээюую ьрЄхЁшрыр",
+    "image": "",
+    "category": 6,
+    "price": "2500.00",
+    "created_at": "2025-12-22T12:49:25.654Z",
+    "updated_at": "2025-12-22T12:49:25.654Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 4,
+  "fields": {
+    "name": "─цшэё√ Levis",
+    "description": "╩ырёёшўхёъшх фцшэё√ ёшэхую ЎтхЄр",
+    "image": "",
+    "category": 6,
+    "price": "5500.00",
+    "created_at": "2025-12-22T12:49:32.356Z",
+    "updated_at": "2025-12-22T12:49:32.356Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 5,
+  "fields": {
+    "name": "Python фы  эрўшэр■∙шї",
+    "description": "╩эшур яю яЁюуЁрььшЁютрэш■ эр Python",
+    "image": "",
+    "category": 7,
+    "price": "1200.00",
+    "created_at": "2025-12-22T12:50:06.480Z",
+    "updated_at": "2025-12-22T12:50:06.480Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 6,
+  "fields": {
+    "name": "├рэЄхыш 5 ъу",
+    "description": "═рсюЁ урэЄхыхщ фы  фюьр°эшї ЄЁхэшЁютюъ",
+    "image": "",
+    "category": 8,
+    "price": "3000.00",
+    "created_at": "2025-12-22T12:50:13.817Z",
+    "updated_at": "2025-12-24T11:49:59.189Z"
+  }
+}
+]

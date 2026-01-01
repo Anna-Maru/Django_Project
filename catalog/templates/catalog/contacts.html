@@ -1,0 +1,174 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Контакты - SkyStore{% endblock %}
+
+{% block content %}
+<!-- Заголовок страницы -->
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Контакты</h1>
+    <p class="lead">Свяжитесь с нами любым удобным способом</p>
+</div>
+
+<!-- Контент -->
+<div class="container">
+    <!-- Сообщения об успешной отправке формы -->
+    {% if messages %}
+        <div class="row">
+            <div class="col-12">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row text-start">
+        <!-- Блок с информацией о компании (ДИНАМИЧЕСКИЕ ДАННЫЕ) -->
+        <div class="col-lg-9 col-md-6 col-sm-12 mb-4">
+            <div class="card box-shadow h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Наша информация</h5>
+                </div>
+                <div class="card-body">
+                    {% if contact %}
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="w-25"><strong><i class="bi bi-globe"></i> Страна</strong></td>
+                                <td>{{ contact.country }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25"><strong><i class="bi bi-building"></i> ИНН</strong></td>
+                                <td>{{ contact.inn }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25"><strong><i class="bi bi-geo-alt"></i> Адрес</strong></td>
+                                <td>{{ contact.address }}</td>
+                            </tr>
+                            {% if contact.email %}
+                            <tr>
+                                <td class="w-25"><strong><i class="bi bi-envelope"></i> Email</strong></td>
+                                <td>
+                                    <a href="mailto:{{ contact.email }}" class="text-decoration-none">
+                                        {{ contact.email }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if contact.phone %}
+                            <tr>
+                                <td class="w-25"><strong><i class="bi bi-telephone"></i> Телефон</strong></td>
+                                <td>
+                                    <a href="tel:{{ contact.phone }}" class="text-decoration-none">
+                                        {{ contact.phone }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        <i class="bi bi-exclamation-triangle"></i> 
+                        Контактная информация пока не заполнена. Пожалуйста, зайдите позже.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок с формой обратной связи -->
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card box-shadow h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Свяжитесь с нами</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'catalog:contacts' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                <i class="bi bi-person"></i> Имя
+                            </label>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                class="form-control" 
+                                id="name" 
+                                placeholder="Ваше имя" 
+                                required
+                            >
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">
+                                <i class="bi bi-phone"></i> Телефон
+                            </label>
+                            <input 
+                                type="tel" 
+                                name="phone" 
+                                class="form-control" 
+                                id="phone" 
+                                placeholder="+7 (999) 123-45-67" 
+                                required
+                            >
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">
+                                <i class="bi bi-chat-text"></i> Сообщение
+                            </label>
+                            <textarea 
+                                name="message" 
+                                class="form-control" 
+                                id="message" 
+                                rows="4" 
+                                placeholder="Ваше сообщение" 
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-send"></i> Отправить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительная информация или карта (опционально) -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card box-shadow">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-clock"></i> Режим работы</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Понедельник - Пятница:</strong> 9:00 - 18:00</li>
+                                <li><strong>Суббота:</strong> 10:00 - 16:00</li>
+                                <li><strong>Воскресенье:</strong> Выходной</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-0">
+                                <i class="bi bi-info-circle"></i> 
+                                Мы всегда рады ответить на ваши вопросы! 
+                                Напишите нам, и мы свяжемся с вами в ближайшее время.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
