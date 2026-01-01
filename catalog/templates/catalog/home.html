@@ -1,151 +1,126 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Skystore - Интернет-магазин</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .pricing-card-title {
-            color: #007bff;
-        }
-        .box-shadow {
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-        }
-    </style>
-</head>
-<body>
-<!-- Шапка сайта -->
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
-    <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
-    </nav>
-</div>
+{% extends 'catalog/base.html' %}
+{% load static %}
 
-<!-- Заголовок страницы -->
+{% block title %}Главная - SkyStore{% endblock %}
+
+{% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Skystore</h1>
-    <p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели продать</p>
+    <h1 class="display-4">SkyStore</h1>
+    <p class="lead">Лучшие товары по выгодным ценам. Найдите всё, что нужно!</p>
 </div>
 
-<!-- Контент с карточками товаров -->
 <div class="container">
-    <div class="row text-center">
-        <!-- Карточка товара 1 -->
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$140</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Неограниченная лицензия</li>
-                        <li>- Поддержка</li>
-                        <li>- Установка на сервер</li>
-                        <li>- Получение обновлений</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary w-100">Купить</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Карточка товара 2 -->
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Telegram Bot</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$95</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Готовый шаблон бота</li>
-                        <li>- Документация</li>
-                        <li>- Техподдержка 3 месяца</li>
-                        <li>- Исходный код</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary w-100">Купить</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Карточка товара 3 -->
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Веб-приложение</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$250</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Django проект</li>
-                        <li>- Адаптивный дизайн</li>
-                        <li>- База данных включена</li>
-                        <li>- 6 месяцев поддержки</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary w-100">Купить</button>
+    <!-- Список товаров -->
+    <div class="row mb-4">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card product-card box-shadow h-100">
+                <!-- Изображение товара -->
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top product-image" alt="{{ product.name }}">
+                {% else %}
+                    <div class="product-image-placeholder">
+                        <span class="text-white">📦</span>
+                    </div>
+                {% endif %}
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    
+                    <!-- Обрезка описания до 100 символов -->
+                    <p class="card-text text-muted flex-grow-1">
+                        {% if product.description %}
+                            {{ product.description|truncatechars:100 }}
+                        {% else %}
+                            Описание отсутствует
+                        {% endif %}
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-success mb-0">{{ product.price }} ₽</h4>
+                            {% if product.category %}
+                                <span class="badge bg-secondary">{{ product.category.name }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-outline-primary">
+                                Подробнее
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Карточка товара 4 -->
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Микросервис</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$180</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- REST API</li>
-                        <li>- Docker контейнер</li>
-                        <li>- Документация API</li>
-                        <li>- Примеры использования</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary w-100">Купить</button>
-                </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center" role="alert">
+                <h4 class="alert-heading">Товары не найдены</h4>
+                <p>В данный момент товары отсутствуют. Пожалуйста, зайдите позже.</p>
             </div>
         </div>
+        {% endfor %}
     </div>
 
-    <!-- Футер -->
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                <strong>SkyStore</strong>
-                <small class="d-block mb-3 text-muted">&copy; 2025</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Дополнительно</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
-                    <li><a class="text-muted" href="#">Документация</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>О нас</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="/contacts/">Контакты</a></li>
-                    <li><a class="text-muted" href="#">О компании</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <!-- Пагинация -->
+    {% if products.has_other_pages %}
+    <nav aria-label="Навигация по страницам">
+        <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">Первая</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.previous_page_number }}">
+                        <i class="bi bi-chevron-left"></i> Назад
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Первая</span>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-left"></i> Назад</span>
+                </li>
+            {% endif %}
+
+            {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.next_page_number }}">
+                        Вперёд <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.paginator.num_pages }}">Последняя</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Вперёд <i class="bi bi-chevron-right"></i></span>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">Последняя</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <p class="text-center text-muted">
+        Страница {{ products.number }} из {{ products.paginator.num_pages }}
+        (всего товаров: {{ products.paginator.count }})
+    </p>
+    {% endif %}
 </div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,36 @@
+<footer class="bg-light border-top mt-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <h5 class="fw-bold">SkyStore</h5>
+                <small class="d-block mb-3 text-muted">&copy; 2024</small>
+                <p class="text-muted small">Интернет-магазин товаров для дома, работы и отдыха</p>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+                <h5>Категории</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="#">Электроника</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="#">Одежда</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="#">Книги</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="#">Спорт</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+                <h5>Информация</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="{% url 'catalog:home' %}">Главная</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="{% url 'catalog:contacts' %}">Контакты</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="#">О нас</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+                <h5>Поддержка</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary text-decoration-none" href="#">Доставка</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="#">Возврат товара</a></li>
+                    <li><a class="link-secondary text-decoration-none" href="{% url 'catalog:contacts' %}">Связаться с нами</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

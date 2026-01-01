@@ -1,0 +1,111 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - SkyStore{% endblock %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ product.name }}</h1>
+    {% if product.category %}
+    <p class="lead">
+        <span class="badge bg-secondary">{{ product.category.name }}</span>
+    </p>
+    {% endif %}
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Изображение товара -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="max-height: 500px; object-fit: contain;">
+                {% else %}
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 500px;">
+                        <span class="text-white fs-1">📦</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Информация о товаре -->
+        <div class="col-md-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Описание</h2>
+                    {% if product.description %}
+                        <p class="card-text">{{ product.description }}</p>
+                    {% else %}
+                        <p class="card-text text-muted">Описание отсутствует</p>
+                    {% endif %}
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="text-success mb-0">{{ product.price }} ₽</h3>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">
+                            <strong>Добавлено:</strong> {{ product.created_at|date:"d.m.Y H:i" }}<br>
+                            <strong>Обновлено:</strong> {{ product.updated_at|date:"d.m.Y H:i" }}
+                        </small>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-lg btn-primary">
+                            <i class="bi bi-cart-plus"></i> Купить
+                        </button>
+                        <a href="{% url 'catalog:home' %}" class="btn btn-lg btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Вернуться к каталогу
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Дополнительная информация -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Дополнительная информация</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>ID товара:</strong> {{ product.pk }}</li>
+                        <li><strong>Категория:</strong> {{ product.category.name|default:"Без категории" }}</li>
+                        <li><strong>В наличии:</strong> <span class="text-success">✓ Да</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Похожие товары (опционально) -->
+    {% if product.category %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Похожие товары</h3>
+        </div>
+        {% for similar_product in product.category.products.all|slice:":3" %}
+            {% if similar_product.pk != product.pk %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if similar_product.image %}
+                        <img src="{{ similar_product.image.url }}" class="card-img-top" alt="{{ similar_product.name }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span class="fs-1">📦</span>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ similar_product.name|truncatechars:30 }}</h5>
+                        <p class="card-text text-success fw-bold">{{ similar_product.price }} ₽</p>
+                        <a href="{% url 'catalog:product_detail' similar_product.pk %}" class="btn btn-sm btn-outline-primary w-100">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
